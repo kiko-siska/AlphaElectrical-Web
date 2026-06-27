@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin – Ondrej Elektrikárske služby</title>
+  <link rel="icon" href="img/icons/bulb.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- ─── LOGIN ─── -->
+<div id="login-page" class="login-page">
+  <div class="login-card">
+    <a href="index.html" class="logo">
+      <span class="logo-name">Ondrej</span>
+      <span class="logo-sep">|</span>
+      <span class="logo-sub">Admin</span>
+    </a>
+    <h1>Prihlásenie</h1>
+    <p>Zadajte admin heslo pre vstup</p>
+    <form id="login-form" autocomplete="off">
+      <div class="form-group">
+        <label for="login-pw">Heslo</label>
+        <input id="login-pw" type="password" placeholder="Zadajte heslo" required autofocus>
+      </div>
+      <button type="submit" class="btn btn-primary">Prihlásiť sa</button>
+      <p id="login-error" class="login-error"></p>
+    </form>
+  </div>
+</div>
+
+<!-- ─── DASHBOARD ─── -->
+<div id="dashboard" class="dashboard">
+  <header class="admin-header">
+    <div class="admin-header-inner">
+      <h2><span style="color:var(--accent)">Ondrej</span> Admin</h2>
+      <div class="admin-header-actions">
+        <a href="index.html" class="btn-sm btn-outline">← Späť na stránku</a>
+        <button id="logout-btn" class="btn-sm btn-danger">Odhlásiť</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="admin-body">
+    <!-- Stats -->
+    <div class="admin-stats">
+      <div class="stat-card">
+        <div class="stat-card-num" id="stat-new">0</div>
+        <div class="stat-card-label">Nové správy</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num" id="stat-total">0</div>
+        <div class="stat-card-label">Celkom správ</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num">4</div>
+        <div class="stat-card-label">Služby</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num">6</div>
+        <div class="stat-label">Fotiek v galérii</div>
+      </div>
+    </div>
+
+    <!-- Messages -->
+    <div class="admin-section">
+      <h3>Došlé správy</h3>
+      <table class="messages-table">
+        <thead>
+          <tr>
+            <th>Meno</th>
+            <th>Telefón</th>
+            <th>Email</th>
+            <th>Služba</th>
+            <th style="width:130px">Stav</th>
+          </tr>
+        </thead>
+        <tbody id="messages-body">
+          <tr class="empty"><td colspan="5">Načítava sa…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>

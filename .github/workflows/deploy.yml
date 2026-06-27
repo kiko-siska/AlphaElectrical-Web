@@ -1,0 +1,52 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check HTML validity
+        uses: Cyb3r-Jak3/html5validator-action@v7.2
+        with:
+          root: .
+          skip: img
+      - name: Lint CSS
+        uses: actions-hub/stylelint@v3
+        continue-on-error: true
+      - name: Lint JavaScript
+        uses: actions-hub/eslint@v3
+        continue-on-error: true
+        with:
+          args: --no-eslintrc --env browser --parser-options=ecmaVersion:latest --rule '{"no-unused-vars":"warn","no-undef":"warn"}' script.js admin.js
+
+  deploy:
+    if: github.ref == 'refs/heads/master'
+    needs: validate
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

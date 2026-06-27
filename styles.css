@@ -371,6 +371,12 @@ header {
 .form-group select:hover,
 .form-group textarea:hover { border-color: rgba(255,255,255,.25); }
 .form-group textarea { resize: vertical; }
+.form-group input:user-invalid,
+.form-group select:user-invalid,
+.form-group textarea:user-invalid {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239,68,68,.15);
+}
 select option { background: #10101C; }
 .form-gdpr {
   display: flex; align-items: flex-start; gap: 10px;

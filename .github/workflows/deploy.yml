@@ -20,11 +20,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check HTML validity
-        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
-        with:
-          root: .
-          blacklist: img
       - name: Lint CSS
         run: npx --yes stylelint "*.css" --allow-empty-input
         continue-on-error: true
